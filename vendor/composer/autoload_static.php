@@ -294,6 +294,7 @@ class ComposerStaticInit6f64a5fb673730c3501a2cafd53be528
         'AddCategoryIdToPosts' => __DIR__ . '/../..' . '/database/migrations/2017_01_07_170227_add_category_id_to_posts.php',
         'AddSlugToPosts' => __DIR__ . '/../..' . '/database/migrations/2016_12_25_144435_add_slug_to_posts.php',
         'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_07_165520_create_categories_table.php',
+        'CreateCommentsTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_18_100900_create_comments_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreatePostTagTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_08_181240_create_post_tag_table.php',
         'CreatePostsTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_12_074409_create_posts_table.php',

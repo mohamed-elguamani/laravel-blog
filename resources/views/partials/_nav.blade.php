@@ -21,10 +21,10 @@
                         <a href="{{route('blog.index')}}">Posts</a>
                     </li>
                     <li>
-                        <a href="about">About</a>
+                        <a href="{{url('/about')}}">About</a>
                     </li>
                     <li>
-                        <a href="contact">Contact</a>
+                        <a href="{{url('/contact')}}">Contact</a>
                     </li>
                     </ul>
 

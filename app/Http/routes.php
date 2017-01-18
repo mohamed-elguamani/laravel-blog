@@ -26,3 +26,7 @@ Route::auth();
 Route::get('/dashboard', 'HomeController@index');
 Route::resource('/category','CategoryController',['except'=>['create','edit','update','show']]);
 Route::resource('/tag','TagController',['except'=>['create']]);
+
+// comments routes
+
+Route::post('comments/{post_id}','CommentsController@store')->name('comments.store');
