@@ -28,7 +28,35 @@
                 <hr>
                 <p>{{ $post->body }}</p>
 
-                
+                <hr>
+
+                <h3>Comments <small>{{$post->comments()->count()}} total</small></h3>
+                <table class="table table-striped">
+                  <tr>
+                    <th>Name</th>
+                    <th>E-mail</th>
+                    <th>Comment</th>
+                    <th>#</th>
+                    <th>#</th>
+                  </tr>
+                    @foreach($post->comments as $comment)
+
+                    <tr>
+                        <td>{{$comment->name}}</td>
+                        <td>{{$comment->email}}</td>
+                        <td>{{$comment->comment}}</td>
+                        <td><a href="{{route('comments.edit',['id'=>$comment->id])}}" class="btn btn-primary">Edit</a></td>
+                        <td>
+                            <form action="{{route('comments.destroy',['id'=>$comment->id])}}" method="post"> {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="delete">
+                                <button class="btn btn-danger"> Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                        
+                    @endforeach
+
+                 </table> 
 
 
             </div>

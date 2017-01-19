@@ -13,6 +13,12 @@ use App\Post;
 
 class CommentsController extends Controller
 {
+
+    public function __construct(){
+
+        $this->middleware('auth',['except'=>['store']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -88,6 +94,9 @@ class CommentsController extends Controller
     public function edit($id)
     {
         //
+
+        $comment=Comment::find($id);
+        return view('comments.edit',['comment'=>$comment]);
     }
 
     /**
@@ -100,6 +109,22 @@ class CommentsController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+           $this->validate($request,[
+                'comment'=>'required|min:10'
+           ]);
+
+           $comment=Comment::find($id);
+
+           $comment->comment=$request->comment;
+
+           $comment->save();
+
+           Session::flash('success','Your comment was successfully updated');
+
+           return redirect()->route('posts.show',[$comment->post->id]);
+
+
     }
 
     /**
@@ -111,5 +136,12 @@ class CommentsController extends Controller
     public function destroy($id)
     {
         //
+        $comment=Comment::find($id);
+        $comment->delete();
+
+         Session::flash('success','the comment was successfully deleted');
+
+        return redirect()->route('posts.show',[$comment->post->id]);
+
     }
 }

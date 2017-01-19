@@ -15,14 +15,11 @@
                 <h2>
                     <a href="{{route('blog.single',['slug'=>$post->slug])}}">{{ $post->title }}</a>
                 </h2>
-                <p class="lead">
-                    by <em>Mohamed El guamani</em>
-                </p>
                 <p><span class="glyphicon glyphicon-time"></span> Posted on {{ date('D j M Y G:i:s T',strtotime($post->created_at))}}</p>
                 <hr>
                 <img class="img-responsive" src="http://placehold.it/900x300" alt="">
                 <hr>
-                <p>{{ substr($post->body,0,100) }}</p>
+                <p>{{ substr($post->body,0,300) }}</p>
 
                 <a class="btn btn-primary" href="{{route('blog.single',['slug'=>$post->slug])}}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 @endforeach                
