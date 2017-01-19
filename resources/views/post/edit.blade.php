@@ -69,4 +69,13 @@
 		
 	$('.select2-tags').select2().val({!!json_encode($post->tags()->getRelatedIds())!!}).trigger("change");
 	</script>
+
+   <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+	<script>
+		tinymce.init({
+		 selector:'textarea',
+		 plugins:'link code image imagetools' ,
+		 menubar:false
+		 });
+	</script>
 @endsection

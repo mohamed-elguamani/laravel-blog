@@ -20,7 +20,7 @@
                 <hr>
                 <img class="img-responsive" src="http://placehold.it/900x300" alt="">
                 <hr>
-                <p>{{ $post->body }}</p>
+                <p>{!!$post->body !!}</p>
 
             </div>
         </div>

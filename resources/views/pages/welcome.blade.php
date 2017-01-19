@@ -19,7 +19,7 @@
                 <hr>
                 <img class="img-responsive" src="http://placehold.it/900x300" alt="">
                 <hr>
-                <p>{{ substr($post->body,0,300) }}</p>
+                <p>{{ substr(strip_tags($post->body),0,300) }}</p>
 
                 <a class="btn btn-primary" href="{{route('blog.single',['slug'=>$post->slug])}}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 @endforeach                
