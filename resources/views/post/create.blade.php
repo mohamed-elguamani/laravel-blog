@@ -16,7 +16,7 @@
 			<h2> Create New Post</h2>
 			<hr>
 
-		<form action="{{route('posts.store')}}" method="POST" class="form-horizontal">
+		<form action="{{route('posts.store')}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
 
             {{ csrf_field() }}
 
@@ -50,7 +50,12 @@
 			    @endforeach	
 
 			    </select>
-		    </div> 
+		    </div>
+
+		    <div class="form-group">
+			    <label for="title">Image</label>
+			    <input type="file" class="form-control" id="image" name="image" placeholder="image">
+			 </div>
 
 			<div class="form-group">
 			    <label for="body">Body</label>

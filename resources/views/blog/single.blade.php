@@ -18,7 +18,9 @@
                 @endforeach</p>
                 <em><strong>Category :</strong> {{ $post->category->name}}</em>
                 <hr>
-                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                @if(isset($post->image))
+                <img class="img-responsive" src="{{asset('images/'.$post->image)}}" alt="">
+                @endif
                 <hr>
                 <p>{!!$post->body !!}</p>
 

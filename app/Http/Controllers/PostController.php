@@ -11,6 +11,7 @@ use App\Category;
 use App\Tag;
 use Purifier;
 use Session;
+use Image;
 
 class PostController extends Controller
 {
@@ -74,6 +75,17 @@ class PostController extends Controller
         $post->slug = $request->slug;
         $post->body = Purifier::clean($request->body);
         $post->category_id=$request->category;
+
+        if($request->hasfile('image')){
+
+            $image=$request->file('image');
+            $filename= time() . '.' . $image->getClientOriginalExtension();
+            $location=public_path('images/'. $filename);
+
+            Image::make($image)->resize(900,300)->save($location);
+
+            $post->image=$filename;
+        }
         
         $post->save();
 

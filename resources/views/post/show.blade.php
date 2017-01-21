@@ -24,7 +24,9 @@
                 
                 <p><span class="glyphicon glyphicon-time"></span> Posted on {{ date('D j M Y G:i:s T',strtotime($post->created_at))}}</p>
                 <hr>
-                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                @if(isset($post->image))
+                <img class="img-responsive" src="{{asset('images/'.$post->image)}}" alt="">
+                @endif
                 <hr>
                 <p>{!! $post->body !!}</p>
 
