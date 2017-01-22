@@ -12,6 +12,7 @@ use App\Tag;
 use Purifier;
 use Session;
 use Image;
+use Storage;
 
 class PostController extends Controller
 {
@@ -65,7 +66,8 @@ class PostController extends Controller
                 'title' => 'required|max:255',
                 'slug' => 'required|alpha_dash|min:5|max:255[unique:posts,slug',
                 'body' => 'required',
-                'category'=>'required'
+                'category'=>'required',
+                'image' => 'sometimes|image'
            ]);
 
         // store data
@@ -141,9 +143,10 @@ class PostController extends Controller
 
         $this->validate($request,[
                 'title' => 'required|max:255',
-                'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+                'slug' => "required|alpha_dash|min:5|max:255|unique:posts,slug,$id",
                 'body' => 'required',
-                'category' => 'required'
+                'category' => 'required',
+                'image' => 'image'
         ]);
 
         // update post and save data
@@ -156,6 +159,28 @@ class PostController extends Controller
         $post->slug = $request->slug;
         $post->body = Purifier::clean($request->body);
         $post->category_id=$request->category;
+
+        if($request->hasfile('image')){
+
+            // add the old image
+            $image=$request->file('image');
+            $filename= time() . '.' . $image->getClientOriginalExtension();
+            $location=public_path('images/'. $filename);
+
+            Image::make($image)->resize(900,300)->save($location);
+
+            $oldfilename=$post->image;
+
+            $post->image=$filename;
+
+            // delele the new photo
+
+            Storage::delete($oldfilename);
+
+
+
+        }
+
 
         $post->save();
         
@@ -186,6 +211,7 @@ class PostController extends Controller
 
         $post = Post::find($id);
         $post->tags()->detach();
+        Storage::delete($post->image);
         $post->delete();
         Session::flash('success','The content was deleted successfully!');
         return redirect('/posts/');

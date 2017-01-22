@@ -10,7 +10,7 @@
 			<h2> Edit#{{$post->title}}</h2>
 			<hr>
 
-		<form action="{{route('posts.update',['id'=>$post->id])}}" method="POST" class="form-horizontal">
+		<form action="{{route('posts.update',['id'=>$post->id])}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
 
             {{ csrf_field() }}
             {{ method_field('PUT') }}
@@ -46,6 +46,11 @@
 
 			    </select>
 		    </div>
+
+		    <div class="form-group">
+			    <label for="title">Image</label>
+			    <input type="file" class="form-control" id="image" name="image" placeholder="image">
+			 </div>
 
 			<div class="form-group">
 			    <label for="body">Body</label>
